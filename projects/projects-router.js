@@ -49,6 +49,21 @@ router.get('/:id', (req, res) => {
     })
 })
 
+// Update a project (U in CRUD)
+router.put('/:id', (req, res) => {
+    Projects.update(req.params.id, req.body).then(count => {
+        if (count > 0) {
+            res.status(200).json({ message: `${count} projects updated!`})
+        } else {
+            res.status(404).json({ message: "Project not found."})
+        }
+    }) .catch(error => {
+        res.status(500).json(error); 
+    })
+})
+
+// Delete a project (D in CRUD)
+
 // 
 
 // Exporting my router, so my server can use  
