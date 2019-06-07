@@ -63,6 +63,20 @@ router.put('/:id', (req, res) => {
 })
 
 // Delete a project (D in CRUD)
+router.delete('/:id', (req, res) => {
+    Projects.remove(req.params.id)
+    .then(count => {
+        if(count >0) {
+            const unit = count > 1 ? 'projects' : 'project'; 
+            res.status(200).json({ message: `${count} ${unit} deleted!`})
+        } else {
+            res.status(404).json({ message: 'Project not found!'})
+        }
+    })
+    .catch(err => {
+        res.status(500).json(err)
+    })
+})
 
 // 
 
