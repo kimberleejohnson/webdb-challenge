@@ -17,5 +17,14 @@
   "bugs": {
     "url": "https://github.com/kimberleejohnson/webdb-challenge/issues"
   },
-  "homepage": "https://github.com/kimberleejohnson/webdb-challenge#readme"
+  "homepage": "https://github.com/kimberleejohnson/webdb-challenge#readme",
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "3": "^2.1.0",
+    "helmet": "^3.18.0",
+    "knex": "^0.17.3",
+    "sqlite": "^3.0.3"
+  }
 }
