@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
     })
 }); 
 
-// Add a new project 
+// Add a new project (C in CRUD)
 router.post('/', (req, res) => {
     Projects.add(req.body, 'id').then(ids => {
         res.status(201).json(ids); 
