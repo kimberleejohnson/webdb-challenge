@@ -2,7 +2,8 @@
 const router = require('express').Router();
 
 // Importing my data model 
-const Actions = require('./actions-model.js'); 
+const Actions = require('./actions-model.js');
+const Contexts = require('../contexts/contexts-model.js'); 
 
 // ROUTES
 
@@ -15,6 +16,29 @@ router.get('/', (req, res) => {
         res.status(500).json(error); 
     })
 }); 
+
+router.get('/:id', (req, res) => {
+    const { id } = req.params; // grabbing the id as required 
+    Actions.find()
+    .where({ id })
+    .first()
+    .then((actions) => {
+        if(actions) {
+            Contexts.find()
+            .where({ action_id: id})
+            .then((contexts) => {
+                actions.contexts = contexts; 
+                res.status(200).json(actions);
+            })
+            .catch((error) => res.status(500).json({ message: "Sorry! We have an error."}));
+        } else {
+            res.status(404).json({ message: "Action not found."})
+        }
+    }).catch(error => {
+        res.status(500).json({ message: "Error!" });
+    })
+})
+
 
 // Adding a new action (C in CRUD)
 router.post('/', (req, res) => {
