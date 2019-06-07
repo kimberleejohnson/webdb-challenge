@@ -16,6 +16,14 @@ router.get('/', (req, res) => {
     })
 }); 
 
+// Add a new project 
+router.post('/', (req, res) => {
+    Projects.add(req.body, 'id').then(ids => {
+        res.status(201).json(ids); 
+    }).catch(error => {
+        res.status(500).json(error); 
+    })
+})
 // 
 
 // Exporting my router, so my server can use  

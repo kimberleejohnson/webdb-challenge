@@ -16,9 +16,15 @@ const db = knex(knexConfig);
 // Exporting functions I'll use in my routes
 module.exports = {
     find,
+    add,
 }
 
 // Defining what those functions do
 function find() {
     return db('projects')
 }; 
+
+function add(project) {
+    return db('projects')
+    .insert(project, 'id')
+};
